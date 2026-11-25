@@ -1433,8 +1433,13 @@ $("openLetter").addEventListener("click",()=>{
     });
 
   },500);
+music.addEventListener("canplay", () => {
+  console.log("Música carregada corretamente!");
 });
 
+music.addEventListener("error", () => {
+  console.log("Erro ao carregar:", music.error);
+});
 /* ENTRAR NA HISTÓRIA */
 
 $("beginStory").addEventListener("click",()=>{
