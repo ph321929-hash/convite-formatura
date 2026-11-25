@@ -33,11 +33,11 @@ html,body{
 }
 
 button{font:inherit;cursor:pointer}
+.serif{font-family:"Cormorant Garamond",serif}
 
 #app{
   position:relative;
   width:100%;
-  height:100%;
   height:100dvh;
   overflow:hidden;
   isolation:isolate;
@@ -66,8 +66,6 @@ button{font:inherit;cursor:pointer}
   box-shadow:inset 0 0 150px rgba(0,0,0,.48);
 }
 
-.serif{font-family:"Cormorant Garamond",serif}
-
 .eyebrow{
   font-size:10px;
   letter-spacing:3px;
@@ -92,18 +90,14 @@ button{font:inherit;cursor:pointer}
 }
 
 .glow.one{
-  width:45vw;
-  height:45vw;
-  left:-13%;
-  top:8%;
+  width:45vw;height:45vw;
+  left:-13%;top:8%;
   background:rgba(67,95,124,.18);
 }
 
 .glow.two{
-  width:40vw;
-  height:40vw;
-  right:-12%;
-  bottom:-12%;
+  width:40vw;height:40vw;
+  right:-12%;bottom:-12%;
   background:rgba(169,127,65,.13);
   animation-delay:-5s;
 }
@@ -114,10 +108,8 @@ button{font:inherit;cursor:pointer}
 
 .light-beam{
   position:absolute;
-  width:55vw;
-  height:120vh;
-  top:-20vh;
-  left:18%;
+  width:55vw;height:120vh;
+  top:-20vh;left:18%;
   transform:rotate(25deg);
   background:linear-gradient(90deg,transparent,rgba(227,196,137,.055),transparent);
   filter:blur(18px);
@@ -125,8 +117,7 @@ button{font:inherit;cursor:pointer}
 
 .dust{
   position:absolute;
-  width:3px;
-  height:3px;
+  width:3px;height:3px;
   border-radius:50%;
   background:#e9d3a8;
   opacity:.4;
@@ -238,8 +229,7 @@ button{font:inherit;cursor:pointer}
   inset:0;
   border-radius:5px;
   background:linear-gradient(135deg,#f0e2c5,#c5ad7f 55%,#a58a5d);
-  box-shadow:inset 0 1px 2px rgba(255,255,255,.65),
-             inset 0 -8px 18px rgba(83,58,29,.16);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.65),inset 0 -8px 18px rgba(83,58,29,.16);
 }
 
 .env-back:after{
@@ -288,10 +278,7 @@ button{font:inherit;cursor:pointer}
 .env-letter{
   position:absolute;
   z-index:4;
-  left:6%;
-  width:88%;
-  height:88%;
-  bottom:5%;
+  left:6%;width:88%;height:88%;bottom:5%;
   padding:18px 12px;
   display:flex;
   align-items:center;
@@ -301,8 +288,7 @@ button{font:inherit;cursor:pointer}
   box-shadow:0 5px 18px rgba(0,0,0,.2);
   opacity:0;
   transform:translateY(0);
-  transition:transform 1s cubic-bezier(.2,.7,.2,1) .22s,
-             opacity .35s ease .15s;
+  transition:transform 1s cubic-bezier(.2,.7,.2,1) .22s,opacity .35s ease .15s;
 }
 
 .env-letter:before{
@@ -327,19 +313,14 @@ button{font:inherit;cursor:pointer}
   margin:8px 0 4px;
 }
 
-.env-letter span{
-  font-size:10px;
-  color:#77716a;
-}
+.env-letter span{font-size:10px;color:#77716a}
 
 .wax{
   position:absolute;
   z-index:7;
-  left:50%;
-  top:42%;
+  left:50%;top:42%;
   transform:translate(-50%,-50%);
-  width:56px;
-  height:56px;
+  width:56px;height:56px;
   border-radius:50%;
   display:grid;
   place-items:center;
@@ -348,9 +329,7 @@ button{font:inherit;cursor:pointer}
   letter-spacing:-2px;
   background:radial-gradient(circle at 32% 25%,#b66f64,#79343b 58%,#4d1d27);
   border:1px solid rgba(246,218,173,.65);
-  box-shadow:inset 0 2px 5px rgba(255,255,255,.23),
-             inset 0 -5px 8px rgba(0,0,0,.3),
-             0 4px 12px rgba(0,0,0,.3);
+  box-shadow:inset 0 2px 5px rgba(255,255,255,.23),inset 0 -5px 8px rgba(0,0,0,.3),0 4px 12px rgba(0,0,0,.3);
   transition:opacity .35s;
 }
 
@@ -380,7 +359,7 @@ button{font:inherit;cursor:pointer}
 
 @keyframes hint{50%{opacity:.4}}
 
-/* CARTÕES */
+/* CARTAS */
 
 #firstNote,#letter{
   position:absolute;
@@ -416,8 +395,7 @@ button{font:inherit;cursor:pointer}
   transition:transform .8s cubic-bezier(.2,.7,.2,1);
 }
 
-#firstNote.show .note-card,
-#letter.show .paper{
+#firstNote.show .note-card,#letter.show .paper{
   transform:translateY(0) scale(1);
 }
 
@@ -472,8 +450,7 @@ button{font:inherit;cursor:pointer}
 .typing-cursor:after{
   content:"";
   display:inline-block;
-  width:1px;
-  height:1em;
+  width:1px;height:1em;
   margin-left:3px;
   vertical-align:-2px;
   background:#a88b5c;
@@ -505,12 +482,8 @@ button{font:inherit;cursor:pointer}
   position:absolute;
   inset:0;
   overflow:hidden;
-  background:
-    radial-gradient(ellipse at 65% 35%,rgba(80,103,124,.38),transparent 45%),
-    linear-gradient(135deg,#263b50,#0b1827 75%);
+  background:radial-gradient(ellipse at 65% 35%,rgba(80,103,124,.38),transparent 45%),linear-gradient(135deg,#263b50,#0b1827 75%);
 }
-
-/* FOTOS: POSICIONAMENTO CORRIGIDO */
 
 .scene-image img{
   position:absolute;
@@ -519,20 +492,16 @@ button{font:inherit;cursor:pointer}
   width:100%;
   height:100%;
   object-fit:cover;
+  object-position:center 18%;
   display:block;
   opacity:0;
-  transform:scale(1.04);
-  transition:transform 9s cubic-bezier(.2,.6,.2,1),opacity .5s ease;
+  transform:scale(1.01);
+  transition:opacity .6s ease;
   filter:brightness(.78) saturate(.82);
 }
 
-.scene-image img.loaded{
-  opacity:1;
-}
-
-.scene.active .scene-image img{
-  transform:scale(1.13);
-}
+.scene-image img.loaded{opacity:1}
+.scene.active .scene-image img{transform:scale(1.01)}
 
 .scene-image:after{
   content:"";
@@ -540,12 +509,8 @@ button{font:inherit;cursor:pointer}
   z-index:2;
   inset:0;
   pointer-events:none;
-  background:
-    linear-gradient(90deg,rgba(4,12,22,.94),rgba(4,12,22,.77) 43%,rgba(4,12,22,.18)),
-    linear-gradient(0deg,rgba(4,12,22,.72),transparent 65%);
+  background:linear-gradient(90deg,rgba(4,12,22,.94),rgba(4,12,22,.77) 43%,rgba(4,12,22,.18)),linear-gradient(0deg,rgba(4,12,22,.72),transparent 65%);
 }
-
-/* PLACEHOLDER: SÓ APARECE SE A FOTO NÃO CARREGAR */
 
 .photo-placeholder{
   position:absolute;
@@ -561,24 +526,10 @@ button{font:inherit;cursor:pointer}
   padding:25px;
 }
 
-.photo-placeholder.hidden{
-  display:none;
-}
-
-.photo-placeholder span{
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-.photo-placeholder strong{
-  font:500 clamp(30px,5vw,48px) "Cormorant Garamond",serif;
-}
-
-.photo-placeholder small{
-  font-size:11px;
-  color:rgba(255,255,255,.48);
-}
+.photo-placeholder.hidden{display:none}
+.photo-placeholder span{font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.photo-placeholder strong{font:500 clamp(30px,5vw,48px) "Cormorant Garamond",serif}
+.photo-placeholder small{font-size:11px;color:rgba(255,255,255,.48)}
 
 .scene-content{
   position:absolute;
@@ -605,10 +556,7 @@ button{font:inherit;cursor:pointer}
   text-shadow:0 5px 30px rgba(0,0,0,.3);
 }
 
-.scene h2 em{
-  font-weight:400;
-  color:var(--gold2);
-}
+.scene h2 em{font-weight:400;color:var(--gold2)}
 
 .scene p{
   max-width:490px;
@@ -643,17 +591,12 @@ button{font:inherit;cursor:pointer}
   to{opacity:1;transform:translate(-50%,-50%)}
 }
 
-.center p{
-  margin-left:auto;
-  margin-right:auto;
-}
-
-/* CARTÃO DO EVENTO: NOVO ALINHAMENTO */
+.center p{margin-left:auto;margin-right:auto}
 
 .event-card{
   width:100%;
   max-width:690px;
-  margin:26px auto 0;
+  margin:24px auto 0;
   padding:25px 30px;
   border:1px solid rgba(213,183,123,.65);
   background:rgba(7,18,31,.82);
@@ -671,7 +614,7 @@ button{font:inherit;cursor:pointer}
 .event-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:24px 30px;
+  gap:22px 30px;
   margin-top:22px;
   align-items:stretch;
 }
@@ -694,7 +637,6 @@ button{font:inherit;cursor:pointer}
   letter-spacing:2px;
   text-transform:uppercase;
   margin-bottom:9px;
-  text-align:center;
 }
 
 .event-item strong{
@@ -702,7 +644,6 @@ button{font:inherit;cursor:pointer}
   width:100%;
   font:500 23px/1.25 "Cormorant Garamond",serif;
   color:#f7f1e7;
-  text-align:center;
   overflow-wrap:break-word;
 }
 
@@ -712,35 +653,13 @@ button{font:inherit;cursor:pointer}
   font:italic 29px "Cormorant Garamond",serif;
 }
 
-/* CONTROLES */
-
-#musicButton{
-  position:absolute;
-  z-index:12;
-  top:23px;
-  right:7%;
-  padding:9px 14px;
-  border:1px solid rgba(213,183,123,.5);
-  border-radius:30px;
-  background:rgba(7,18,31,.75);
-  color:#f7f1e7;
-  font-size:10px;
-  backdrop-filter:blur(10px);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .5s;
-}
-
-#musicButton.visible{
-  opacity:1;
-  pointer-events:auto;
-}
+/* NAVEGAÇÃO */
 
 #counter{
   position:absolute;
   z-index:10;
   right:7%;
-  top:75px;
+  top:25px;
   display:none;
   color:var(--gold);
   font-size:10px;
@@ -750,9 +669,7 @@ button{font:inherit;cursor:pointer}
 #bottom{
   position:absolute;
   z-index:10;
-  left:7%;
-  right:7%;
-  bottom:24px;
+  left:7%;right:7%;bottom:24px;
   display:none;
   align-items:center;
   justify-content:space-between;
@@ -781,47 +698,33 @@ button{font:inherit;cursor:pointer}
   transform:none;
 }
 
-#dots{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
+#dots{display:flex;align-items:center;gap:7px}
 
 .dot{
-  width:5px;
-  height:5px;
+  width:5px;height:5px;
   border-radius:20px;
   background:rgba(255,255,255,.4);
   transition:width .35s,background .35s;
 }
 
-.dot.active{
-  width:23px;
-  background:var(--gold);
-}
+.dot.active{width:23px;background:var(--gold)}
 
-/* MOBILE */
+/* CELULAR */
 
 @media(max-width:650px){
 
   .cover-frame{inset:12px}
-
   .cover-heading{margin-bottom:30px}
 
-  .cover-heading h1{
-    font-size:clamp(39px,10vw,53px);
-  }
-
+  .cover-heading h1{font-size:clamp(39px,10vw,53px)}
   .envelope-wrap{width:min(350px,86vw)}
 
-  .cover-hint{
-    margin-top:33px;
-    font-size:9px;
-  }
+  .cover-hint{margin-top:33px;font-size:9px}
+
+  .scene-image img{object-position:center 15%}
 
   .scene-image:after{
-    background:
-      linear-gradient(0deg,rgba(4,12,22,.97),rgba(4,12,22,.82) 53%,rgba(4,12,22,.2));
+    background:linear-gradient(0deg,rgba(4,12,22,.97),rgba(4,12,22,.82) 53%,rgba(4,12,22,.2));
   }
 
   .scene-content{
@@ -840,32 +743,19 @@ button{font:inherit;cursor:pointer}
     to{opacity:1;transform:translateY(0)}
   }
 
-  .scene h2{
-    font-size:clamp(55px,14vw,78px);
-  }
-
-  .scene p{
-    font-size:13px;
-    line-height:1.8;
-    margin-top:17px;
-  }
-
-  .scene-note{
-    font-size:19px;
-    margin-top:17px;
-  }
-
-  /* CENA FINAL NO CELULAR */
+  .scene h2{font-size:clamp(55px,14vw,78px)}
+  .scene p{font-size:13px;line-height:1.8;margin-top:17px}
+  .scene-note{font-size:19px;margin-top:17px}
 
   .center .scene-content{
     left:50%;
     top:46%;
     bottom:auto;
     width:90%;
-    max-height:calc(100dvh - 125px);
+    max-height:calc(100dvh - 115px);
     overflow-y:auto;
     overflow-x:hidden;
-    padding:12px 2px 18px;
+    padding:12px 3px 20px;
     transform:translate(-50%,-40%);
     scrollbar-width:thin;
     scrollbar-color:rgba(213,183,123,.5) transparent;
@@ -886,10 +776,7 @@ button{font:inherit;cursor:pointer}
     margin-top:13px;
   }
 
-  .event-card{
-    padding:19px 14px;
-    margin-top:17px;
-  }
+  .event-card{padding:19px 14px;margin-top:17px}
 
   .event-grid{
     grid-template-columns:1fr;
@@ -897,80 +784,17 @@ button{font:inherit;cursor:pointer}
     margin-top:17px;
   }
 
-  .event-item{
-    padding:3px 8px;
-  }
+  .event-item{padding:3px 8px}
+  .event-item strong{font-size:21px}
+  .final-signature{font-size:26px;margin-top:14px}
 
-  .event-item strong{
-    font-size:21px;
-  }
-
-  .final-signature{
-    font-size:26px;
-    margin-top:14px;
-  }
-
-  #musicButton{
-    right:5%;
-    top:15px;
-  }
-
-  #bottom{
-    left:5%;
-    right:5%;
-    bottom:15px;
-  }
-
-  .nav-button{
-    padding:11px 10px;
-    font-size:9px;
-  }
-
+  #bottom{left:5%;right:5%;bottom:15px}
+  .nav-button{padding:11px 10px;font-size:9px}
   #dots{gap:4px}
   .dot.active{width:14px}
+  #counter{right:6%;top:17px}
 
-  #counter{
-    right:6%;
-    top:60px;
-  }
-
-  .note-card,.paper{
-    padding:34px 24px;
-  }
-}
-
-/* TELAS BAIXAS */
-
-@media(max-height:700px){
-
-  .scene-content{bottom:12%}
-
-  .scene h2{
-    font-size:clamp(46px,8vw,78px);
-  }
-
-  .scene p{
-    font-size:12px;
-    margin-top:13px;
-  }
-
-  .scene-note{margin-top:12px}
-
-  .event-card{
-    padding:17px 20px;
-    margin-top:13px;
-  }
-
-  .event-grid{
-    gap:13px 20px;
-    margin-top:15px;
-  }
-
-  .event-item strong{font-size:20px}
-
-  .final-signature{margin-top:12px}
-
-  .paper,.note-card{max-height:92dvh}
+  .note-card,.paper{padding:34px 24px}
 }
 
 @media(max-width:650px) and (max-height:750px){
@@ -979,24 +803,25 @@ button{font:inherit;cursor:pointer}
     max-height:calc(100dvh - 105px);
   }
 
-  .center h2{
-    font-size:43px;
-  }
-
-  .event-card{
-    padding:13px;
-    margin-top:11px;
-  }
-
-  .event-grid{
-    gap:11px;
-    margin-top:12px;
-  }
-
+  .center h2{font-size:43px}
+  .event-card{padding:13px;margin-top:11px}
+  .event-grid{gap:11px;margin-top:12px}
   .event-item strong{font-size:18px}
 }
 
-/* ACESSIBILIDADE */
+@media(max-height:700px) and (min-width:651px){
+  .scene h2{font-size:clamp(46px,8vw,78px)}
+  .scene p{font-size:12px;margin-top:13px}
+  .scene-note{margin-top:12px}
+  .center .scene-content{
+    max-height:calc(100dvh - 95px);
+    overflow-y:auto;
+    padding-bottom:15px;
+  }
+  .event-card{padding:17px 20px;margin-top:13px}
+  .event-grid{gap:13px 20px;margin-top:15px}
+  .event-item strong{font-size:20px}
+}
 
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{
@@ -1075,25 +900,18 @@ button{font:inherit;cursor:pointer}
       <span class="eyebrow">Uma história até aqui</span>
       <h2 id="letterTitle"></h2>
 
-      <div id="letterText">
-        <p>Às vezes, a gente vive cada etapa sem perceber o quanto o caminho está nos transformando. Quando olha para trás, encontra lembranças, pessoas e momentos que gostaria de guardar para sempre.</p>
-        <p>Hoje, estou chegando ao fim de uma fase muito importante da minha vida. Por isso, preparei uma pequena viagem pelas memórias que me trouxeram até aqui.</p>
-        <p>Quero dividir um pouco dessa caminhada com você e, no final, fazer um convite especial.</p>
-      </div>
+      <!-- O JavaScript escreve os parágrafos aqui. Não inserir texto neste espaço. -->
+      <div id="letterText"></div>
 
       <div class="signature">Pedro Henrique</div>
       <button class="primary-button" id="beginStory">Conhecer minha história</button>
     </article>
   </section>
 
-  <!-- MÚSICA DE FUNDO -->
-
+  <!-- MÚSICA AUTOMÁTICA -->
   <audio id="music" loop preload="auto">
     <source src="assets/musica.mp3" type="audio/mpeg">
   </audio>
-
-  <button id="musicButton" type="button">♫ Música ligada</button>
-
 
   <!-- HISTÓRIA -->
 
@@ -1109,7 +927,8 @@ button{font:inherit;cursor:pointer}
         <img src="assets/infancia.jpg" alt="Fotografia da infância">
       </div>
 
-      <div class="scene-content"
+      <div class="scene-content">
+        <span class="eyebrow">Capítulo 01 · O começo</span>
         <h2>Mal sabia<br><em>eu...</em></h2>
         <p>Que aqueles primeiros passos seriam o início de uma caminhada tão longa. Os primeiros dias de aula, as descobertas, a curiosidade de criança e tantos momentos que, na época, pareciam pequenos. Hoje, olhando para trás, percebo que ali começava uma parte muito bonita da minha história.</p>
         <div class="scene-note">E tudo ainda estava por acontecer</div>
@@ -1127,9 +946,10 @@ button{font:inherit;cursor:pointer}
       </div>
 
       <div class="scene-content">
+        <span class="eyebrow">Capítulo 02 · Aprendizados</span>
         <h2>O tempo<br><em>foi passando.</em></h2>
         <p>Vieram os aprendizados, as amizades, os professores, as brincadeiras e as experiências que fizeram parte da minha infância. Cada ano trazia algo novo e, sem perceber, eu estava crescendo. Algumas lembranças ficaram guardadas em fotografias; outras, na memória.</p>
-        <div class="scene-note">Tem coisa que o tempo não apaga </div>
+        <div class="scene-note">Tem coisa que o tempo não apaga</div>
       </div>
     </section>
 
@@ -1144,9 +964,10 @@ button{font:inherit;cursor:pointer}
       </div>
 
       <div class="scene-content">
+        <span class="eyebrow">Capítulo 03 · Transformações</span>
         <h2>Já não era<br><em>o mesmo menino</em></h2>
         <p>A adolescência chegou trazendo novas descobertas, responsabilidades e sonhos. Comecei a enxergar o futuro de outra maneira e a entender que crescer também significa aprender com os desafios. Muita coisa mudou desde aqueles primeiros anos, inclusive a forma como passei a olhar para mim.</p>
-        <div class="scene-note">Cada fase deixou um pouco de si </div>
+        <div class="scene-note">Cada fase deixou um pouco de si</div>
       </div>
     </section>
 
@@ -1161,9 +982,10 @@ button{font:inherit;cursor:pointer}
       </div>
 
       <div class="scene-content">
-        <h2>Uma fase<br><em>para guardar </em></h2>
+        <span class="eyebrow">Capítulo 04 · Uma fase inesquecível</span>
+        <h2>Uma fase<br><em>para guardar</em></h2>
         <p>O ensino médio trouxe dias que pareciam comuns, mas que hoje sei que terão um lugar especial nas minhas lembranças. Foram aulas, conversas, risadas, preocupações, amizades e tantos acontecimentos que fizeram desses anos uma parte inesquecível da minha vida.</p>
-        <div class="scene-note">E, de repente, estava chegando ao fim </div>
+        <div class="scene-note">E, de repente, estava chegando ao fim</div>
       </div>
     </section>
 
@@ -1178,9 +1000,10 @@ button{font:inherit;cursor:pointer}
       </div>
 
       <div class="scene-content">
-        <h2>Olha só<br><em>onde cheguei </em></h2>
+        <span class="eyebrow">Capítulo 05 · Uma conquista</span>
+        <h2>Olha só<br><em>onde cheguei</em></h2>
         <p>Quando olho para trás, não vejo apenas o fim de uma etapa. Vejo tudo o que vivi para chegar até aqui, os aprendizados, as pessoas que caminharam comigo e as lembranças que vou levar. Ainda tenho muitos sonhos pela frente, mas hoje quero reconhecer e celebrar essa conquista.</p>
-        <div class="scene-note">Com orgulho da minha caminhada </div>
+        <div class="scene-note">Com orgulho da minha caminhada</div>
       </div>
     </section>
 
@@ -1204,10 +1027,9 @@ button{font:inherit;cursor:pointer}
         <p>Depois de tantas lembranças, chegou a hora de celebrar uma das etapas mais importantes da minha vida. E não faria sentido viver esse momento sem compartilhar a alegria com pessoas que fazem parte da minha história. Sua presença será muito especial para mim.</p>
 
         <div class="event-card">
-          <span class="eyebrow">Minha formatura · 2027</span>
+          <span class="eyebrow">Uma noite para celebrar · 2027</span>
 
           <div class="event-grid">
-
             <div class="event-item">
               <span>Data</span>
               <strong>16 de janeiro de 2027</strong>
@@ -1219,15 +1041,14 @@ button{font:inherit;cursor:pointer}
             </div>
 
             <div class="event-item">
-              <span>Local</span>
+              <span>Local da celebração</span>
               <strong>Quadra da Escola Rubens Guimarães Júnior</strong>
             </div>
 
             <div class="event-item">
               <span>Cidade</span>
-              <strong>Ourém – PA</strong>
+              <strong>Ourém – Pará</strong>
             </div>
-
           </div>
         </div>
 
@@ -1239,6 +1060,8 @@ button{font:inherit;cursor:pointer}
   </main>
 
   <!-- NAVEGAÇÃO -->
+
+  <div id="counter"></div>
 
   <nav id="bottom">
     <button class="nav-button" id="back" disabled>← Voltar</button>
@@ -1256,7 +1079,6 @@ const cover = $("cover");
 const firstNote = $("firstNote");
 const letter = $("letter");
 const music = $("music");
-const musicButton = $("musicButton");
 const scenes = [...document.querySelectorAll(".scene")];
 const dots = $("dots");
 const back = $("back");
@@ -1267,8 +1089,9 @@ let current = 0;
 let typingTimers = [];
 let typingVersion = 0;
 let touchStartX = 0;
+let musicStarted = false;
 
-/* ÁUDIO REAL DE DIGITAÇÃO */
+/* SOM REAL DA DIGITAÇÃO */
 
 const typingSound = new Audio("assets/digitacao.mp3");
 typingSound.loop = true;
@@ -1287,7 +1110,7 @@ function stopTypingSound(){
   typingSound.currentTime = 0;
 }
 
-/* CONTROLE DAS ANIMAÇÕES DE ESCRITA */
+/* CONTROLE DA DIGITAÇÃO */
 
 function stopTyping(){
   typingVersion++;
@@ -1298,17 +1121,22 @@ function stopTyping(){
   stopTypingSound();
 }
 
+function scheduleTyping(callback,delay,version){
+  const timer = setTimeout(()=>{
+    if(version === typingVersion) callback();
+  },delay);
+
+  typingTimers.push(timer);
+}
+
 /* ESCREVER UM TEXTO */
 
 function typeText(element,text,speed=30,callback=null){
   stopTyping();
 
   const version = typingVersion;
-
   element.textContent = "";
   element.classList.add("typing-cursor");
-
-  startTypingSound();
 
   let index = 0;
 
@@ -1323,32 +1151,28 @@ function typeText(element,text,speed=30,callback=null){
       return;
     }
 
-    const character = text[index];
-
+    const character = text[index++];
     element.textContent += character;
-    index++;
+
+    startTypingSound();
 
     let delay = speed;
 
-    if(character === "," || character === ";") delay = speed * 5;
+    if(character === "," || character === ";") delay = speed * 4;
+    if(character === "." || character === "!" || character === "?") delay = speed * 7;
 
-    if(character === "." || character === "!" || character === "?") {
-      delay = speed * 8;
-    }
-
-    typingTimers.push(setTimeout(write,delay));
+    scheduleTyping(write,delay,version);
   }
 
   write();
 }
 
-/* ESCREVER PARÁGRAFOS EM SEQUÊNCIA */
+/* ESCREVER OS PARÁGRAFOS EM SEQUÊNCIA */
 
 function typeParagraphs(container,paragraphs,speed=22,callback=null){
   stopTyping();
 
   const version = typingVersion;
-
   container.innerHTML = "";
 
   let paragraphIndex = 0;
@@ -1358,7 +1182,6 @@ function typeParagraphs(container,paragraphs,speed=22,callback=null){
 
     if(paragraphIndex >= paragraphs.length){
       stopTypingSound();
-
       if(callback) callback();
       return;
     }
@@ -1366,37 +1189,29 @@ function typeParagraphs(container,paragraphs,speed=22,callback=null){
     const p = document.createElement("p");
     container.appendChild(p);
 
-    const text = paragraphs[paragraphIndex];
+    const text = paragraphs[paragraphIndex++];
     let index = 0;
-
-    startTypingSound();
 
     function write(){
       if(version !== typingVersion) return;
 
       if(index >= text.length){
-        paragraphIndex++;
-
         stopTypingSound();
-
-        typingTimers.push(setTimeout(nextParagraph,420));
+        scheduleTyping(nextParagraph,450,version);
         return;
       }
 
-      const character = text[index];
-
+      const character = text[index++];
       p.textContent += character;
-      index++;
+
+      startTypingSound();
 
       let delay = speed;
 
       if(character === "," || character === ";") delay = speed * 4;
+      if(character === "." || character === "!" || character === "?") delay = speed * 7;
 
-      if(character === "." || character === "!" || character === "?") {
-        delay = speed * 7;
-      }
-
-      typingTimers.push(setTimeout(write,delay));
+      scheduleTyping(write,delay,version);
     }
 
     write();
@@ -1407,25 +1222,21 @@ function typeParagraphs(container,paragraphs,speed=22,callback=null){
 
 /* CARREGAMENTO DAS FOTOGRAFIAS */
 
-document.querySelectorAll(".scene-image img").forEach(img => {
-
+document.querySelectorAll(".scene-image img").forEach(img=>{
   const placeholder = img.parentElement.querySelector(".photo-placeholder");
 
   function imageLoaded(){
     img.classList.add("loaded");
+    img.style.display = "block";
 
-    if(placeholder){
-      placeholder.classList.add("hidden");
-    }
+    if(placeholder) placeholder.classList.add("hidden");
   }
 
   function imageFailed(){
     img.classList.remove("loaded");
     img.style.display = "none";
 
-    if(placeholder){
-      placeholder.classList.remove("hidden");
-    }
+    if(placeholder) placeholder.classList.remove("hidden");
 
     console.warn("Não foi possível carregar a fotografia:",img.src);
   }
@@ -1434,25 +1245,23 @@ document.querySelectorAll(".scene-image img").forEach(img => {
   img.addEventListener("error",imageFailed);
 
   if(img.complete){
-    if(img.naturalWidth > 0){
-      imageLoaded();
-    }else{
-      imageFailed();
-    }
+    if(img.naturalWidth > 0) imageLoaded();
+    else imageFailed();
   }
 });
 
-/* MÚSICA DE FUNDO */
+/* MÚSICA */
 
 async function startMusic(){
   music.volume = .38;
 
   try{
     await music.play();
-    musicButton.textContent = "♫ Música ligada";
+    musicStarted = true;
     return true;
   }catch(error){
-    musicButton.textContent = "♫ Tocar música";
+    musicStarted = false;
+    console.warn("O navegador não permitiu iniciar a música ainda.",error);
     return false;
   }
 }
@@ -1464,22 +1273,20 @@ function openEnvelope(){
 
   opened = true;
 
-  /* A música começa no primeiro toque. */
+  /* O primeiro toque no envelope inicia a tentativa de tocar a música. */
   startMusic();
 
   envelope.classList.add("open");
-
   $("coverHint").textContent = "Uma mensagem especial para você";
 
-  setTimeout(() => {
-
+  setTimeout(()=>{
     firstNote.classList.add("show");
 
     typeText(
       $("noteTitle"),
       "Para você.",
       85,
-      () => {
+      ()=>{
         typeText(
           $("noteText"),
           "Preparei cada detalhe para compartilhar um pouco da minha história e convidar você para um dia muito especial.",
@@ -1487,7 +1294,6 @@ function openEnvelope(){
         );
       }
     );
-
   },450);
 }
 
@@ -1503,63 +1309,53 @@ envelope.addEventListener("keydown",e=>{
 /* PRIMEIRO BILHETE PARA A CARTA */
 
 $("openLetter").addEventListener("click",()=>{
-
   stopTyping();
+
+  /* Segunda tentativa de iniciar a música, dentro de um clique do visitante. */
+  if(!musicStarted) startMusic();
 
   firstNote.classList.remove("show");
 
   setTimeout(()=>{
-
     letter.classList.add("show");
 
-    /* Primeiro escreve o título.
-       Somente depois escreve os três parágrafos. */
+    $("letterTitle").textContent = "";
+    $("letterText").innerHTML = "";
 
     typeText(
       $("letterTitle"),
       "Quero te contar uma história.",
       65,
-      () => {
-
+      ()=>{
         typeParagraphs(
           $("letterText"),
           [
             "Às vezes, a gente vive cada etapa sem perceber o quanto o caminho está nos transformando. Quando olha para trás, encontra lembranças, pessoas e momentos que gostaria de guardar para sempre.",
-
             "Hoje, estou chegando ao fim de uma fase muito importante da minha vida. Por isso, preparei uma pequena viagem pelas memórias que me trouxeram até aqui.",
-
             "Quero dividir um pouco dessa caminhada com você — e, no final, fazer um convite especial."
           ],
           17
         );
-
       }
     );
-
   },300);
 });
 
 /* ENTRAR NA HISTÓRIA */
 
 $("beginStory").addEventListener("click",()=>{
-
   stopTyping();
 
   letter.classList.remove("show");
 
   setTimeout(()=>{
-
     letter.style.display = "none";
-
     cover.classList.add("hide");
 
     $("bottom").style.display = "flex";
     $("counter").style.display = "block";
 
-    musicButton.classList.add("visible");
-
     showScene(0);
-
   },450);
 });
 
@@ -1574,7 +1370,6 @@ scenes.forEach(()=>{
 /* NAVEGAÇÃO */
 
 function showScene(index){
-
   current = Math.max(0,Math.min(index,scenes.length - 1));
 
   scenes.forEach((scene,i)=>{
@@ -1587,10 +1382,9 @@ function showScene(index){
 
   back.disabled = current === 0;
 
-  next.textContent =
-    current === scenes.length - 1
-      ? "Recomeçar ↺"
-      : "Continuar →";
+  next.textContent = current === scenes.length - 1
+    ? "Recomeçar ↺"
+    : "Continuar →";
 
   $("counter").textContent =
     `${String(current + 1).padStart(2,"0")} / ${String(scenes.length).padStart(2,"0")}`;
@@ -1604,26 +1398,6 @@ next.addEventListener("click",()=>{
   showScene(current === scenes.length - 1 ? 0 : current + 1);
 });
 
-/* CONTROLE DA MÚSICA */
-
-musicButton.addEventListener("click",async()=>{
-
-  if(music.paused){
-
-    const playing = await startMusic();
-
-    if(!playing){
-      musicButton.textContent = "♫ Tentar novamente";
-    }
-
-  }else{
-
-    music.pause();
-    musicButton.textContent = "♫ Música pausada";
-
-  }
-});
-
 /* DESLIZAR NO CELULAR */
 
 $("app").addEventListener("touchstart",e=>{
@@ -1631,7 +1405,6 @@ $("app").addEventListener("touchstart",e=>{
 },{passive:true});
 
 $("app").addEventListener("touchend",e=>{
-
   if(
     !cover.classList.contains("hide") ||
     letter.classList.contains("show") ||
@@ -1649,17 +1422,13 @@ $("app").addEventListener("touchend",e=>{
   if(delta > 0 && current > 0){
     showScene(current - 1);
   }
-
 },{passive:true});
 
 /* TECLADO */
 
 document.addEventListener("keydown",e=>{
-
   if(!cover.classList.contains("hide")) return;
-
   if(letter.classList.contains("show")) return;
-
   if(firstNote.classList.contains("show")) return;
 
   if(e.key === "ArrowRight"){
@@ -1669,7 +1438,6 @@ document.addEventListener("keydown",e=>{
   if(e.key === "ArrowLeft"){
     showScene(current - 1);
   }
-
 });
 
 /* INICIALIZAÇÃO */
