@@ -25,7 +25,7 @@
 
 html,body{
   width:100%;
-  height:100%;
+  min-height:100%;
   overflow:hidden;
   background:var(--navy);
   color:#f7f1e7;
@@ -38,6 +38,7 @@ button{font:inherit;cursor:pointer}
 #app{
   position:relative;
   width:100%;
+  height:100vh;
   height:100dvh;
   overflow:hidden;
   isolation:isolate;
@@ -369,17 +370,22 @@ button{font:inherit;cursor:pointer}
   align-items:center;
   justify-content:center;
   padding:22px;
-  background:rgba(5,13,23,.72);
+  background:rgba(5,13,23,.78);
   backdrop-filter:blur(9px);
   opacity:0;
   visibility:hidden;
-  transition:opacity .65s ease,visibility .65s;
+  pointer-events:none;
+  transition:opacity .45s ease,visibility .45s;
 }
 
 #firstNote.show,#letter.show{
   opacity:1;
   visibility:visible;
+  pointer-events:auto;
 }
+
+#firstNote{z-index:26}
+#letter{z-index:27}
 
 .note-card,.paper{
   position:relative;
@@ -392,7 +398,7 @@ button{font:inherit;cursor:pointer}
   background:linear-gradient(145deg,#fffdf7,#eee4d2);
   box-shadow:0 35px 100px rgba(0,0,0,.5);
   transform:translateY(25px) scale(.98);
-  transition:transform .8s cubic-bezier(.2,.7,.2,1);
+  transition:transform .65s cubic-bezier(.2,.7,.2,1);
 }
 
 #firstNote.show .note-card,#letter.show .paper{
@@ -411,8 +417,9 @@ button{font:inherit;cursor:pointer}
 
 .note-card h2,.paper h2{
   position:relative;
-  font:500 clamp(40px,7vw,59px)/.95 "Cormorant Garamond",serif;
-  margin:18px 0;
+  font:600 clamp(43px,7vw,62px)/.95 "Cormorant Garamond",serif;
+  color:#263247;
+  margin:18px 0 23px;
 }
 
 .note-card p,.paper p{
@@ -445,6 +452,17 @@ button{font:inherit;cursor:pointer}
   font:italic 30px "Cormorant Garamond",serif;
   color:#987b4e;
   margin-top:18px;
+}
+
+.letter-ending{
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .5s ease;
+}
+
+.letter-ending.visible{
+  opacity:1;
+  visibility:visible;
 }
 
 .typing-cursor:after{
@@ -495,13 +513,13 @@ button{font:inherit;cursor:pointer}
   object-position:center 18%;
   display:block;
   opacity:0;
-  transform:scale(1.01);
-  transition:opacity .6s ease;
+  transform:scale(1.02);
+  transition:opacity .6s ease,transform 5s ease;
   filter:brightness(.78) saturate(.82);
 }
 
 .scene-image img.loaded{opacity:1}
-.scene.active .scene-image img{transform:scale(1.01)}
+.scene.active .scene-image img{transform:scale(1.05)}
 
 .scene-image:after{
   content:"";
@@ -550,7 +568,7 @@ button{font:inherit;cursor:pointer}
 }
 
 .scene h2{
-  font:500 clamp(57px,9vw,105px)/.88 "Cormorant Garamond",serif;
+  font:600 clamp(57px,9vw,105px)/.88 "Cormorant Garamond",serif;
   letter-spacing:-1px;
   margin-top:17px;
   text-shadow:0 5px 30px rgba(0,0,0,.3);
@@ -712,13 +730,10 @@ button{font:inherit;cursor:pointer}
 /* CELULAR */
 
 @media(max-width:650px){
-
   .cover-frame{inset:12px}
   .cover-heading{margin-bottom:30px}
-
   .cover-heading h1{font-size:clamp(39px,10vw,53px)}
   .envelope-wrap{width:min(350px,86vw)}
-
   .cover-hint{margin-top:33px;font-size:9px}
 
   .scene-image img{object-position:center 15%}
@@ -866,7 +881,7 @@ button{font:inherit;cursor:pointer}
         <div class="env-letter">
           <div class="env-letter-inner">
             <small>Uma lembrança especial</small>
-            <strong>Com carinho,<br>para você</strong>
+            <strong>Com carinho<br>para você</strong>
             <span>Pedro Henrique</span>
           </div>
         </div>
@@ -884,7 +899,7 @@ button{font:inherit;cursor:pointer}
 
   <!-- PRIMEIRO BILHETE -->
 
-  <section id="firstNote">
+  <section id="firstNote" aria-hidden="true">
     <div class="note-card">
       <span class="eyebrow">Com carinho</span>
       <h2 id="noteTitle"></h2>
@@ -895,20 +910,22 @@ button{font:inherit;cursor:pointer}
 
   <!-- CARTA PRINCIPAL -->
 
-  <section id="letter">
+  <section id="letter" aria-hidden="true">
     <article class="paper">
       <span class="eyebrow">Uma história até aqui</span>
       <h2 id="letterTitle"></h2>
 
-      <!-- O JavaScript escreve os parágrafos aqui. Não inserir texto neste espaço. -->
       <div id="letterText"></div>
 
-      <div class="signature">Pedro Henrique</div>
-      <button class="primary-button" id="beginStory">Conhecer minha história</button>
+      <div class="letter-ending" id="letterEnding">
+        <div class="signature">Pedro Henrique</div>
+        <button class="primary-button" id="beginStory">Conhecer minha história</button>
+      </div>
     </article>
   </section>
 
-  <!-- MÚSICA AUTOMÁTICA -->
+  <!-- MÚSICA -->
+
   <audio id="music" loop preload="auto">
     <source src="assets/musica.mp3" type="audio/mpeg">
   </audio>
@@ -922,13 +939,13 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Minha infância</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/infancia.jpg</small>
+          <small>assets/infancia.jpg.jpeg</small>
         </div>
-        <img src="assets/infancia.jpg" alt="Fotografia da infância">
+        <img src="assets/infancia.jpg.jpeg" alt="Fotografia da infância">
       </div>
 
       <div class="scene-content">
-        <span class="eyebrow">Capítulo 01 · O começo</span>
+        <span class="eyebrow">Capítulo 01 | O começo</span>
         <h2>Mal sabia<br><em>eu...</em></h2>
         <p>Que aqueles primeiros passos seriam o início de uma caminhada tão longa. Os primeiros dias de aula, as descobertas, a curiosidade de criança e tantos momentos que, na época, pareciam pequenos. Hoje, olhando para trás, percebo que ali começava uma parte muito bonita da minha história.</p>
         <div class="scene-note">E tudo ainda estava por acontecer</div>
@@ -940,14 +957,14 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Ensino fundamental</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/fundamental.jpg</small>
+          <small>assets/fundamental.jpg.jpeg</small>
         </div>
-        <img src="assets/fundamental.jpg" alt="Fotografia dos anos de ensino fundamental">
+        <img src="assets/fundamental.jpg.jpeg" alt="Fotografia dos anos de ensino fundamental">
       </div>
 
       <div class="scene-content">
-        <span class="eyebrow">Capítulo 02 · Aprendizados</span>
-        <h2>O tempo<br><em>foi passando.</em></h2>
+        <span class="eyebrow">Capítulo 02 | Aprendizados</span>
+        <h2>O tempo<br><em>foi passando</em></h2>
         <p>Vieram os aprendizados, as amizades, os professores, as brincadeiras e as experiências que fizeram parte da minha infância. Cada ano trazia algo novo e, sem perceber, eu estava crescendo. Algumas lembranças ficaram guardadas em fotografias; outras, na memória.</p>
         <div class="scene-note">Tem coisa que o tempo não apaga</div>
       </div>
@@ -958,13 +975,13 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Minha adolescência</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/adolescencia.jpg</small>
+          <small>assets/adolescencia.jpg.jpeg</small>
         </div>
-        <img src="assets/adolescencia.jpg" alt="Fotografia da adolescência">
+        <img src="assets/adolescencia.jpg.jpeg" alt="Fotografia da adolescência">
       </div>
 
       <div class="scene-content">
-        <span class="eyebrow">Capítulo 03 · Transformações</span>
+        <span class="eyebrow">Capítulo 03 | Transformações</span>
         <h2>Já não era<br><em>o mesmo menino</em></h2>
         <p>A adolescência chegou trazendo novas descobertas, responsabilidades e sonhos. Comecei a enxergar o futuro de outra maneira e a entender que crescer também significa aprender com os desafios. Muita coisa mudou desde aqueles primeiros anos, inclusive a forma como passei a olhar para mim.</p>
         <div class="scene-note">Cada fase deixou um pouco de si</div>
@@ -976,13 +993,13 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Ensino médio</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/ensino-medio.jpg</small>
+          <small>assets/ensino-medio.jpg.jpeg</small>
         </div>
-        <img src="assets/ensino-medio.jpg" alt="Fotografia do ensino médio">
+        <img src="assets/ensino-medio.jpg.jpeg" alt="Fotografia do ensino médio">
       </div>
 
       <div class="scene-content">
-        <span class="eyebrow">Capítulo 04 · Uma fase inesquecível</span>
+        <span class="eyebrow">Capítulo 04 | Uma fase inesquecível</span>
         <h2>Uma fase<br><em>para guardar</em></h2>
         <p>O ensino médio trouxe dias que pareciam comuns, mas que hoje sei que terão um lugar especial nas minhas lembranças. Foram aulas, conversas, risadas, preocupações, amizades e tantos acontecimentos que fizeram desses anos uma parte inesquecível da minha vida.</p>
         <div class="scene-note">E, de repente, estava chegando ao fim</div>
@@ -994,13 +1011,13 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Minha conquista</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/foto-formatura.jpg</small>
+          <small>assets/foto-formatura.jp.jpeg</small>
         </div>
-        <img src="assets/foto-formatura.jpg" alt="Fotografia de formatura">
+        <img src="assets/foto-formatura.jp.jpeg" alt="Fotografia de formatura">
       </div>
 
       <div class="scene-content">
-        <span class="eyebrow">Capítulo 05 · Uma conquista</span>
+        <span class="eyebrow">Capítulo 05 | Uma conquista</span>
         <h2>Olha só<br><em>onde cheguei</em></h2>
         <p>Quando olho para trás, não vejo apenas o fim de uma etapa. Vejo tudo o que vivi para chegar até aqui, os aprendizados, as pessoas que caminharam comigo e as lembranças que vou levar. Ainda tenho muitos sonhos pela frente, mas hoje quero reconhecer e celebrar essa conquista.</p>
         <div class="scene-note">Com orgulho da minha caminhada</div>
@@ -1014,20 +1031,20 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Um novo capítulo</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/foto-formatura.jpg</small>
+          <small>assets/foto-formatura.jp.jpeg</small>
         </div>
-        <img src="assets/foto-formatura.jpg" alt="Fotografia para o convite final">
+        <img src="assets/foto-formatura.jp.jpeg" alt="Fotografia para o convite final">
       </div>
 
       <div class="scene-content">
         <span class="eyebrow">Um novo capítulo começa</span>
 
-        <h2>Quero você<br><em>comigo nesse dia.</em></h2>
+        <h2>Quero você<br><em>comigo nesse dia</em></h2>
 
         <p>Depois de tantas lembranças, chegou a hora de celebrar uma das etapas mais importantes da minha vida. E não faria sentido viver esse momento sem compartilhar a alegria com pessoas que fazem parte da minha história. Sua presença será muito especial para mim.</p>
 
         <div class="event-card">
-          <span class="eyebrow">Uma noite para celebrar · 2027</span>
+          <span class="eyebrow">Uma noite para celebrar | 2027</span>
 
           <div class="event-grid">
             <div class="event-item">
@@ -1085,17 +1102,20 @@ const back = $("back");
 const next = $("next");
 
 let opened = false;
+let letterOpening = false;
+let storyStarted = false;
 let current = 0;
-let typingTimers = [];
+
+let typingTimer = null;
 let typingVersion = 0;
 let touchStartX = 0;
 let musicStarted = false;
 
-/* SOM REAL DA DIGITAÇÃO */
+/* ÁUDIO DE DIGITAÇÃO */
 
-const typingSound = new Audio("assets/digitacao.mp3");
+const typingSound = new Audio("assets/digitacao.mp3.mp3");
 typingSound.loop = true;
-typingSound.volume = .22;
+typingSound.volume = 0.18;
 typingSound.preload = "auto";
 
 function startTypingSound(){
@@ -1107,117 +1127,98 @@ function startTypingSound(){
 
 function stopTypingSound(){
   typingSound.pause();
-  typingSound.currentTime = 0;
+  try{typingSound.currentTime = 0}catch(e){}
 }
 
-/* CONTROLE DA DIGITAÇÃO */
+/* CONTROLE ÚNICO DA DIGITAÇÃO */
 
-function stopTyping(){
+function cancelTyping(){
   typingVersion++;
 
-  typingTimers.forEach(timer => clearTimeout(timer));
-  typingTimers = [];
+  if(typingTimer !== null){
+    clearTimeout(typingTimer);
+    typingTimer = null;
+  }
 
   stopTypingSound();
 }
 
 function scheduleTyping(callback,delay,version){
-  const timer = setTimeout(()=>{
-    if(version === typingVersion) callback();
+  typingTimer = setTimeout(()=>{
+    typingTimer = null;
+
+    if(version === typingVersion){
+      callback();
+    }
   },delay);
-
-  typingTimers.push(timer);
 }
 
-/* ESCREVER UM TEXTO */
+function characterDelay(character,speed){
+  if(character === "," || character === ";") return speed * 3;
+  if(character === "." || character === "!" || character === "?") return speed * 5;
+  return speed;
+}
 
-function typeText(element,text,speed=30,callback=null){
-  stopTyping();
+/* DIGITAÇÃO EM SEQUÊNCIA
+   Cada execução tem um identificador próprio
+   Uma nova execução cancela completamente a anterior */
+
+function typeSequence(tasks,onComplete){
+  cancelTyping();
 
   const version = typingVersion;
-  element.textContent = "";
-  element.classList.add("typing-cursor");
+  let taskIndex = 0;
 
-  let index = 0;
-
-  function write(){
+  function nextTask(){
     if(version !== typingVersion) return;
 
-    if(index >= text.length){
-      element.classList.remove("typing-cursor");
+    if(taskIndex >= tasks.length){
       stopTypingSound();
-
-      if(callback) callback();
+      if(onComplete) onComplete();
       return;
     }
 
-    const character = text[index++];
-    element.textContent += character;
+    const task = tasks[taskIndex++];
+    const element = task.element;
+    const text = task.text;
+    const speed = task.speed || 25;
 
-    startTypingSound();
+    element.textContent = "";
+    element.classList.add("typing-cursor");
 
-    let delay = speed;
-
-    if(character === "," || character === ";") delay = speed * 4;
-    if(character === "." || character === "!" || character === "?") delay = speed * 7;
-
-    scheduleTyping(write,delay,version);
-  }
-
-  write();
-}
-
-/* ESCREVER OS PARÁGRAFOS EM SEQUÊNCIA */
-
-function typeParagraphs(container,paragraphs,speed=22,callback=null){
-  stopTyping();
-
-  const version = typingVersion;
-  container.innerHTML = "";
-
-  let paragraphIndex = 0;
-
-  function nextParagraph(){
-    if(version !== typingVersion) return;
-
-    if(paragraphIndex >= paragraphs.length){
-      stopTypingSound();
-      if(callback) callback();
-      return;
-    }
-
-    const p = document.createElement("p");
-    container.appendChild(p);
-
-    const text = paragraphs[paragraphIndex++];
     let index = 0;
 
-    function write(){
+    function writeCharacter(){
       if(version !== typingVersion) return;
 
       if(index >= text.length){
+        element.classList.remove("typing-cursor");
         stopTypingSound();
-        scheduleTyping(nextParagraph,450,version);
+
+        if(task.after){
+          task.after();
+        }
+
+        scheduleTyping(nextTask,task.pause || 350,version);
         return;
       }
 
       const character = text[index++];
-      p.textContent += character;
+      element.textContent += character;
 
       startTypingSound();
 
-      let delay = speed;
-
-      if(character === "," || character === ";") delay = speed * 4;
-      if(character === "." || character === "!" || character === "?") delay = speed * 7;
-
-      scheduleTyping(write,delay,version);
+      scheduleTyping(
+        writeCharacter,
+        characterDelay(character,speed),
+        version
+      );
     }
 
-    write();
+    writeCharacter();
   }
 
-  nextParagraph();
+  nextTask();
 }
 
 /* CARREGAMENTO DAS FOTOGRAFIAS */
@@ -1229,16 +1230,20 @@ document.querySelectorAll(".scene-image img").forEach(img=>{
     img.classList.add("loaded");
     img.style.display = "block";
 
-    if(placeholder) placeholder.classList.add("hidden");
+    if(placeholder){
+      placeholder.classList.add("hidden");
+    }
   }
 
   function imageFailed(){
     img.classList.remove("loaded");
     img.style.display = "none";
 
-    if(placeholder) placeholder.classList.remove("hidden");
+    if(placeholder){
+      placeholder.classList.remove("hidden");
+    }
 
-    console.warn("Não foi possível carregar a fotografia:",img.src);
+    console.warn("Não foi possível carregar a fotografia:",img.getAttribute("src"));
   }
 
   img.addEventListener("load",imageLoaded);
@@ -1250,21 +1255,29 @@ document.querySelectorAll(".scene-image img").forEach(img=>{
   }
 });
 
-/* MÚSICA */
+/* MÚSICA
+   O navegador permite iniciar o áudio após uma interação do visitante */
 
-async function startMusic(){
-  music.volume = .38;
+function startMusic(){
+  if(musicStarted && !music.paused) return;
 
-  try{
-    await music.play();
-    musicStarted = true;
-    return true;
-  }catch(error){
-    musicStarted = false;
-    console.warn("O navegador não permitiu iniciar a música ainda.",error);
-    return false;
+  music.volume = 0.38;
+
+  const playPromise = music.play();
+
+  if(playPromise !== undefined){
+    playPromise.then(()=>{
+      musicStarted = true;
+    }).catch(error=>{
+      musicStarted = false;
+      console.warn("A música não iniciou. Será feita outra tentativa na próxima interação.",error);
+    });
   }
 }
+
+music.addEventListener("error",()=>{
+  console.error("Erro ao carregar a música. Confira se assets/musica.mp3 existe no GitHub.");
+});
 
 /* ABRIR ENVELOPE */
 
@@ -1273,28 +1286,32 @@ function openEnvelope(){
 
   opened = true;
 
-  /* O primeiro toque no envelope inicia a tentativa de tocar a música. */
+  /* A música começa no primeiro toque */
   startMusic();
 
   envelope.classList.add("open");
   $("coverHint").textContent = "Uma mensagem especial para você";
 
   setTimeout(()=>{
-    firstNote.classList.add("show");
+    if(!opened) return;
 
-    typeText(
-      $("noteTitle"),
-      "Para você.",
-      85,
-      ()=>{
-        typeText(
-          $("noteText"),
-          "Preparei cada detalhe para compartilhar um pouco da minha história e convidar você para um dia muito especial.",
-          23
-        );
+    firstNote.classList.add("show");
+    firstNote.setAttribute("aria-hidden","false");
+
+    typeSequence([
+      {
+        element:$("noteTitle"),
+        text:"Para você",
+        speed:85,
+        pause:250
+      },
+      {
+        element:$("noteText"),
+        text:"Preparei cada detalhe para compartilhar um pouco da minha história e convidar você para um dia muito especial.",
+        speed:23
       }
-    );
-  },450);
+    ]);
+  },650);
 }
 
 envelope.addEventListener("click",openEnvelope);
@@ -1306,47 +1323,87 @@ envelope.addEventListener("keydown",e=>{
   }
 });
 
-/* PRIMEIRO BILHETE PARA A CARTA */
+/* PRIMEIRO BILHETE PARA A CARTA PRINCIPAL */
 
 $("openLetter").addEventListener("click",()=>{
-  stopTyping();
+  if(letterOpening || storyStarted) return;
 
-  /* Segunda tentativa de iniciar a música, dentro de um clique do visitante. */
-  if(!musicStarted) startMusic();
+  letterOpening = true;
+  cancelTyping();
 
+  /* Nova tentativa de iniciar a música durante o clique */
+  startMusic();
+
+  /* Esconde o primeiro bilhete antes de mostrar a carta principal */
   firstNote.classList.remove("show");
+  firstNote.setAttribute("aria-hidden","true");
+
+  $("openLetter").disabled = true;
 
   setTimeout(()=>{
+    $("noteTitle").textContent = "";
+    $("noteText").textContent = "";
+
     letter.classList.add("show");
+    letter.setAttribute("aria-hidden","false");
 
     $("letterTitle").textContent = "";
-    $("letterText").innerHTML = "";
+    $("letterText").replaceChildren();
+    $("letterEnding").classList.remove("visible");
 
-    typeText(
-      $("letterTitle"),
-      "Quero te contar uma história.",
-      65,
-      ()=>{
-        typeParagraphs(
-          $("letterText"),
-          [
-            "Às vezes, a gente vive cada etapa sem perceber o quanto o caminho está nos transformando. Quando olha para trás, encontra lembranças, pessoas e momentos que gostaria de guardar para sempre.",
-            "Hoje, estou chegando ao fim de uma fase muito importante da minha vida. Por isso, preparei uma pequena viagem pelas memórias que me trouxeram até aqui.",
-            "Quero dividir um pouco dessa caminhada com você — e, no final, fazer um convite especial."
-          ],
-          17
-        );
+    typeSequence([
+      {
+        element:$("letterTitle"),
+        text:"Quero te contar uma história",
+        speed:65,
+        pause:350
+      },
+      {
+        element:(()=>{
+          const p = document.createElement("p");
+          $("letterText").appendChild(p);
+          return p;
+        })(),
+        text:"Às vezes, a gente vive cada etapa sem perceber o quanto o caminho está nos transformando. Quando olha para trás, encontra lembranças, pessoas e momentos que gostaria de guardar para sempre.",
+        speed:17,
+        pause:300
+      },
+      {
+        element:(()=>{
+          const p = document.createElement("p");
+          $("letterText").appendChild(p);
+          return p;
+        })(),
+        text:"Hoje, estou chegando ao fim de uma fase muito importante da minha vida. Por isso, preparei uma pequena viagem pelas memórias que me trouxeram até aqui.",
+        speed:17,
+        pause:300
+      },
+      {
+        element:(()=>{
+          const p = document.createElement("p");
+          $("letterText").appendChild(p);
+          return p;
+        })(),
+        text:"Quero dividir um pouco dessa caminhada com você e, no final, fazer um convite especial.",
+        speed:17
       }
-    );
-  },300);
+    ],()=>{
+      $("letterEnding").classList.add("visible");
+    });
+
+  },500);
 });
 
 /* ENTRAR NA HISTÓRIA */
 
 $("beginStory").addEventListener("click",()=>{
-  stopTyping();
+  if(storyStarted) return;
+
+  storyStarted = true;
+  cancelTyping();
 
   letter.classList.remove("show");
+  letter.setAttribute("aria-hidden","true");
 
   setTimeout(()=>{
     letter.style.display = "none";
@@ -1356,7 +1413,7 @@ $("beginStory").addEventListener("click",()=>{
     $("counter").style.display = "block";
 
     showScene(0);
-  },450);
+  },500);
 });
 
 /* INDICADORES */
