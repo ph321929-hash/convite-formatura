@@ -924,7 +924,7 @@ button{font:inherit;cursor:pointer}
     </article>
   </section>
 
-  <!-- MÚSICA -->
+  <!-- ÁUDIOS -->
 
   <audio id="music" loop preload="auto">
     <source src="assets/musica.mp3" type="audio/mpeg">
@@ -939,9 +939,9 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Minha infância</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/infancia.jpg.jpeg</small>
+          <small>assets/infancia.jpg</small>
         </div>
-        <img src="assets/infancia.jpg.jpeg" alt="Fotografia da infância">
+        <img src="assets/infancia.jpg" alt="Fotografia da infância">
       </div>
 
       <div class="scene-content">
@@ -957,9 +957,9 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Ensino fundamental</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/fundamental.jpg.jpeg</small>
+          <small>assets/fundamental.jpg</small>
         </div>
-        <img src="assets/fundamental.jpg.jpeg" alt="Fotografia dos anos de ensino fundamental">
+        <img src="assets/fundamental.jpg" alt="Fotografia dos anos de ensino fundamental">
       </div>
 
       <div class="scene-content">
@@ -975,9 +975,9 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Minha adolescência</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/adolescencia.jpg.jpeg</small>
+          <small>assets/adolescencia.jpg</small>
         </div>
-        <img src="assets/adolescencia.jpg.jpeg" alt="Fotografia da adolescência">
+        <img src="assets/adolescencia.jpg" alt="Fotografia da adolescência">
       </div>
 
       <div class="scene-content">
@@ -993,9 +993,9 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Ensino médio</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/ensino-medio.jpg.jpeg</small>
+          <small>assets/ensino-medio.jpg</small>
         </div>
-        <img src="assets/ensino-medio.jpg.jpeg" alt="Fotografia do ensino médio">
+        <img src="assets/ensino-medio.jpg" alt="Fotografia do ensino médio">
       </div>
 
       <div class="scene-content">
@@ -1011,9 +1011,9 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Minha conquista</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/foto-formatura.jp.jpeg</small>
+          <small>assets/foto-formatura.jpg</small>
         </div>
-        <img src="assets/foto-formatura.jp.jpeg" alt="Fotografia de formatura">
+        <img src="assets/foto-formatura.jpg" alt="Fotografia de formatura">
       </div>
 
       <div class="scene-content">
@@ -1031,9 +1031,9 @@ button{font:inherit;cursor:pointer}
         <div class="photo-placeholder">
           <strong>Um novo capítulo</strong>
           <span>Adicione aqui sua fotografia</span>
-          <small>assets/foto-formatura.jp.jpeg</small>
+          <small>assets/foto-formatura.jpg</small>
         </div>
-        <img src="assets/foto-formatura.jp.jpeg" alt="Fotografia para o convite final">
+        <img src="assets/foto-formatura.jpg" alt="Fotografia para o convite final">
       </div>
 
       <div class="scene-content">
@@ -1110,25 +1110,64 @@ let typingTimer = null;
 let typingVersion = 0;
 let touchStartX = 0;
 let musicStarted = false;
+let typingAudioUnlocked = false;
 
 /* ÁUDIO DE DIGITAÇÃO */
 
-const typingSound = new Audio("assets/digitacao.mp3.mp3");
+const typingSound = new Audio("assets/digitacao.mp3");
 typingSound.loop = true;
 typingSound.volume = 0.18;
 typingSound.preload = "auto";
 
+/*
+  Libera o áudio de digitação durante o primeiro clique.
+  Isso ajuda a evitar que o navegador bloqueie o som
+  quando a digitação começar alguns instantes depois.
+*/
+
+function unlockTypingAudio(){
+  if(typingAudioUnlocked) return;
+
+  typingSound.volume = 0;
+
+  const unlockPromise = typingSound.play();
+
+  if(unlockPromise !== undefined){
+    unlockPromise.then(()=>{
+      typingAudioUnlocked = true;
+
+      typingSound.pause();
+      typingSound.currentTime = 0;
+      typingSound.volume = 0.18;
+    }).catch(error=>{
+      typingSound.volume = 0.18;
+      console.warn("Não foi possível liberar o áudio de digitação:",error);
+    });
+  }
+}
+
 function startTypingSound(){
   if(typingSound.paused){
     typingSound.currentTime = 0;
-    typingSound.play().catch(()=>{});
+    typingSound.volume = 0.18;
+
+    typingSound.play().catch(error=>{
+      console.warn("Não foi possível iniciar o som de digitação:",error);
+    });
   }
 }
 
 function stopTypingSound(){
   typingSound.pause();
-  try{typingSound.currentTime = 0}catch(e){}
+
+  try{
+    typingSound.currentTime = 0;
+  }catch(error){}
 }
+
+typingSound.addEventListener("error",()=>{
+  console.error("Erro ao carregar o som. Confira se assets/digitacao.mp3 existe no GitHub.");
+});
 
 /* CONTROLE ÚNICO DA DIGITAÇÃO */
 
@@ -1159,9 +1198,7 @@ function characterDelay(character,speed){
   return speed;
 }
 
-/* DIGITAÇÃO EM SEQUÊNCIA
-   Cada execução tem um identificador próprio
-   Uma nova execução cancela completamente a anterior */
+/* DIGITAÇÃO EM SEQUÊNCIA */
 
 function typeSequence(tasks,onComplete){
   cancelTyping();
@@ -1255,8 +1292,7 @@ document.querySelectorAll(".scene-image img").forEach(img=>{
   }
 });
 
-/* MÚSICA
-   O navegador permite iniciar o áudio após uma interação do visitante */
+/* MÚSICA */
 
 function startMusic(){
   if(musicStarted && !music.paused) return;
@@ -1286,8 +1322,13 @@ function openEnvelope(){
 
   opened = true;
 
-  /* A música começa no primeiro toque */
+  /*
+    Os dois áudios são acionados no primeiro clique.
+    A música começa e o som de digitação é liberado.
+  */
+
   startMusic();
+  unlockTypingAudio();
 
   envelope.classList.add("open");
   $("coverHint").textContent = "Uma mensagem especial para você";
@@ -1331,10 +1372,10 @@ $("openLetter").addEventListener("click",()=>{
   letterOpening = true;
   cancelTyping();
 
-  /* Nova tentativa de iniciar a música durante o clique */
+  /* Nova tentativa de iniciar os áudios durante o clique */
   startMusic();
+  unlockTypingAudio();
 
-  /* Esconde o primeiro bilhete antes de mostrar a carta principal */
   firstNote.classList.remove("show");
   firstNote.setAttribute("aria-hidden","true");
 
