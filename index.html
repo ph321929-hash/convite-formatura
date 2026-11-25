@@ -1119,12 +1119,6 @@ typingSound.loop = true;
 typingSound.volume = 0.18;
 typingSound.preload = "auto";
 
-/*
-  Libera o áudio de digitação durante o primeiro clique.
-  Isso ajuda a evitar que o navegador bloqueie o som
-  quando a digitação começar alguns instantes depois.
-*/
-
 function unlockTypingAudio(){
   if(typingAudioUnlocked) return;
 
@@ -1135,7 +1129,6 @@ function unlockTypingAudio(){
   if(unlockPromise !== undefined){
     unlockPromise.then(()=>{
       typingAudioUnlocked = true;
-
       typingSound.pause();
       typingSound.currentTime = 0;
       typingSound.volume = 0.18;
@@ -1304,6 +1297,7 @@ function startMusic(){
   if(playPromise !== undefined){
     playPromise.then(()=>{
       musicStarted = true;
+      console.log("Música iniciada com sucesso!");
     }).catch(error=>{
       musicStarted = false;
       console.warn("A música não iniciou. Será feita outra tentativa na próxima interação.",error);
@@ -1311,8 +1305,12 @@ function startMusic(){
   }
 }
 
+music.addEventListener("canplay",()=>{
+  console.log("Música carregada corretamente!");
+});
+
 music.addEventListener("error",()=>{
-  console.error("Erro ao carregar a música. Confira se assets/musica.mp3 existe no GitHub.");
+  console.error("Erro ao carregar a música. Confira se assets/musica.mp3 existe no GitHub.",music.error);
 });
 
 /* ABRIR ENVELOPE */
@@ -1321,11 +1319,6 @@ function openEnvelope(){
   if(opened) return;
 
   opened = true;
-
-  /*
-    Os dois áudios são acionados no primeiro clique.
-    A música começa e o som de digitação é liberado.
-  */
 
   startMusic();
   unlockTypingAudio();
@@ -1372,7 +1365,6 @@ $("openLetter").addEventListener("click",()=>{
   letterOpening = true;
   cancelTyping();
 
-  /* Nova tentativa de iniciar os áudios durante o clique */
   startMusic();
   unlockTypingAudio();
 
@@ -1433,13 +1425,8 @@ $("openLetter").addEventListener("click",()=>{
     });
 
   },500);
-music.addEventListener("canplay", () => {
-  console.log("Música carregada corretamente!");
 });
 
-music.addEventListener("error", () => {
-  console.log("Erro ao carregar:", music.error);
-});
 /* ENTRAR NA HISTÓRIA */
 
 $("beginStory").addEventListener("click",()=>{
